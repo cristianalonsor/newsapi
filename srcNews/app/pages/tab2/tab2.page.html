@@ -1,0 +1,35 @@
+<ion-header  no-border>
+  <ion-toolbar color="dark">
+    <ion-title>
+      Encabezados
+    </ion-title>
+  </ion-toolbar>
+  <!--verificar que siempre el evento este en el segmento y no en el boton, ya que asi 
+  detecta cuiando toco el boton dentro del segmento-->
+  <ion-segment scrollable mode="md" color="primary" class="fondo-general" (ionChange)="cambioCategoria( $event )">
+
+    <ion-segment-button mode="md" 
+                        *ngFor="let categoria of categorias"
+                        [value]="categoria">
+      <ion-label text-capitalize>{{ categoria }}</ion-label>
+
+    </ion-segment-button>
+
+  </ion-segment>
+
+</ion-header>
+
+<ion-content color="dark">
+
+  <app-noticias  [noticias]="noticias" ></app-noticias>
+
+  <ion-infinite-scroll threshold="150px" 
+                         (ionInfinite)="loadData( $event )">
+      <ion-infinite-scroll-content  color="white"
+                                    loadingSpinner="bubbles"
+                                    loadingText="Cargando...">
+        
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+</ion-content>
